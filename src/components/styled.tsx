@@ -20,7 +20,7 @@ export const CustomText = styled(Typography)({
 })
 export const CustomTextField = styled('input')({
 	color: '#fff',
-	width: '15%',
+	width: '25%',
 	outline: 'none',
 	fontSize: '1.3rem',
 	background: 'transparent',
