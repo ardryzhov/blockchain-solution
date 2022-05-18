@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './App.css'
+import ProfilePage from './pages/ProfilePage'
+import Homepage from './pages/Homepage'
+import Notfoundpage from './pages/Notfoundpage'
+import Header from './components/Header'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Routes, Route } from 'react-router-dom'
+import { Container } from '@mui/material'
+import {
+	Chart as ChartJS,
+	CategoryScale,
+	LinearScale,
+	PointElement,
+	LineElement,
+	Title,
+	Tooltip,
+	Legend,
+	ArcElement,
+} from 'chart.js'
+
+ChartJS.register(
+	CategoryScale,
+	LinearScale,
+	PointElement,
+	LineElement,
+	Title,
+	Tooltip,
+	Legend,
+	ArcElement
+)
+
+const App: React.FC = () => {
+	return (
+		<>
+			<Header />
+			<Container>
+				<Routes>
+					<Route path='/' element={<Homepage />} />
+					<Route path='/profile' element={<ProfilePage />} />
+					<Route path='*' element={<Notfoundpage />} />
+				</Routes>
+			</Container>
+		</>
+	)
 }
 
-export default App;
+export default App
