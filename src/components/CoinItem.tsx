@@ -9,16 +9,16 @@ import PriceConverter from './PriceConverter'
 
 const CoinItem: React.FC<ICoinData> = ({ name, prices, currentPrice }) => {
 	const dispatch = useAppDispatch()
-	// const coinsData = useAppSelector((state) => state.coinsData)
+	const coinsData = useAppSelector((state) => state.coinsData)
 
-	// const [currentCoinCount, setCurrentCoinCount] = useState<number>(1)
-	// const [otherCoinPrice, setOtherCoinPrice] = useState<number>(1)
-	// const [usd, setUsd] = useState<number>(1)
+	const [currentCoinCount, setCurrentCoinCount] = useState<number>(1)
+	const [otherCoinPrice, setOtherCoinPrice] = useState<number>(1)
+	const [usd, setUsd] = useState<number>(1)
 
-	// const otherCoin: ICoinData = coinsData.filter(
-	// 	(coin: ICoinData) => coin.name !== name
-	// )[0]
-	// const otherCoinCurrentPrice = otherCoin.currentPrice
+	const otherCoin: ICoinData = coinsData.filter(
+		(coin: ICoinData) => coin.name !== name
+	)[0]
+	const otherCoinCurrentPrice = otherCoin.currentPrice
 
 	const title = name.slice(0, 1).toUpperCase() + name.slice(1, name.length)
 
@@ -26,19 +26,19 @@ const CoinItem: React.FC<ICoinData> = ({ name, prices, currentPrice }) => {
 		dispatch(fetchCoinsData(name))
 	}, [])
 
-	// useEffect(() => {
-	// 	convertPrice()
-	// }, [otherCoin, currentCoinCount, currentPrice])
+	useEffect(() => {
+		convertPrice()
+	}, [otherCoin, currentCoinCount, currentPrice])
 
-	// const convertPrice = () => {
-	// 	const CoinToCoin = +(
-	// 		(currentCoinCount * currentPrice) /
-	// 		otherCoinCurrentPrice
-	// 	).toFixed(3)
-	// 	const CoinToUsd = +(currentPrice * currentCoinCount).toFixed(3)
-	// 	// setOtherCoinPrice(CoinToCoin)
-	// 	// setUsd(CoinToUsd)
-	// }
+	const convertPrice = () => {
+		const CoinToCoin = +(
+			(currentCoinCount * currentPrice) /
+			otherCoinCurrentPrice
+		).toFixed(3)
+		const CoinToUsd = +(currentPrice * currentCoinCount).toFixed(3)
+		setOtherCoinPrice(CoinToCoin)
+		setUsd(CoinToUsd)
+	}
 
 	return (
 		<>
