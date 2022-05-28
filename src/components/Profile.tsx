@@ -21,19 +21,21 @@ const Profile: React.FC = () => {
 			}}
 		>
 			<Typography variant='h4'>Ваш порфтель</Typography>
-			<Box sx={{ display: 'flex', flexDirection: 'column' }}>
+			<Box sx={{ display: 'flex', flexDirection: 'column', my: 2 }}>
 				{currentCoins.map((coin: ICurrentCoin) => (
 					<ProfileCustomBox key={coin.name}>
 						<ProfileCounter {...coin} />
 					</ProfileCustomBox>
 				))}
 			</Box>
-			<ProfileCustomBox sx={{ flexDirection: 'column' }}>
-				<Typography variant='h5'>Total price: </Typography>
+			<ProfileCustomBox sx={{ flexDirection: 'column', mt: 2 }}>
+				<Typography variant='h5'>Общая стоимость портфеля: </Typography>
 				{fetchPrice ? (
 					<Typography>Loading...</Typography>
 				) : (
-					<Typography>{totalPrice} $</Typography>
+					<Typography sx={{ my: 2, fontSize: '1.3rem' }}>
+						{totalPrice} $
+					</Typography>
 				)}
 			</ProfileCustomBox>
 		</Box>
